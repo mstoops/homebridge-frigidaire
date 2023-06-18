@@ -55,8 +55,8 @@ FrigidairePlatform.prototype = {
 
           console.log('creating accessory for AC unit labeled: ' + applianceObj.nickname + " (" + applianceObj.appliance_id + ")");
           airConditioners.push(new FrigidaireAirConditionerAccessory(applianceObj, self.AC, self.log, self.pollingInterval));
-  
-          return callback(airConditioners); 
+
+          return callback(airConditioners);
         }
       });
     } else {
@@ -162,7 +162,7 @@ FrigidaireAirConditionerAccessory.prototype = {
   /* no way to set this with API
     setCurrentHeatingCoolingState: function(value, callback) {
       this.log("setCurrentHeatingCoolingState: ", value);
-  
+
       this.currentCoolingState = value;
       return callback(null);
     },
@@ -413,7 +413,7 @@ FrigidaireAirConditionerAccessory.prototype = {
           .setCharacteristic(Characteristic.FilterChangeIndication, newValue);
       }
 
-      return callback(null, self.fulter);
+      return callback(null, self.filter);
     });
   },
 
@@ -424,7 +424,7 @@ FrigidaireAirConditionerAccessory.prototype = {
 
   updateAll: function (self) {
     debug("updateAll() - " + self.applianceSn);
-    self.AC.getTelem(self.applianceSn, function (err, result) { 
+    self.AC.getTelem(self.applianceSn, function (err, result) {
         debug("updateAll() - updating homekit " + self.applianceSn);
         self.getTemperatureDisplayUnits(function () { });
         self.getCurrentHeatingCoolingState(function () { });
